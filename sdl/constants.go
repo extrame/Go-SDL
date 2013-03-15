@@ -1,6 +1,7 @@
 package sdl
 
-// #cgo pkg-config: sdl
+// #cgo linux pkg-config: sdl
+// #cgo darwin CFLAGS: -I/opt/local/include/
 // #include <SDL/SDL.h>
 import "C"
 

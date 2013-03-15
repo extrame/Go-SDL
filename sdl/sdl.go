@@ -7,15 +7,21 @@ flavor (eg. Rather than sdl.Flip(surface) it's surface.Flip() )
 */
 package sdl
 
-// #cgo pkg-config: sdl
-// #cgo LDFLAGS: -lSDL_image
+// #cgo linux pkg-config: sdl
+// #cgo linux CFLAGS: -DLINUX_SDL
+// #cgo linux LDFLAGS: -lSDL_image
+// #cgo darwin LDFLAGS: -framework SDL -framework SDL_image
 //
 // struct private_hwdata{};
 // struct SDL_BlitMap{};
 // #define map _map
 //
 // #include <SDL/SDL.h>
+// #ifdef LINUX_SDL
 // #include <SDL/SDL_image.h>
+// #else
+// #include <SDL_image/SDL_image.h>
+// #endif
 // static void SetError(const char* description){SDL_SetError("%s",description);}
 // static int __SDL_SaveBMP(SDL_Surface *surface, const char *file) { return SDL_SaveBMP(surface, file); }
 import "C"
